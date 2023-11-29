@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up Page</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+{% load static %}
+ 
+<style>
+  body {
+    margin: 20px;
+    padding: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    background-image: no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .signup-box {
+    
+    background-color:transparent;
+    width: 350px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .signup-box h2 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .signup-input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .signup-button {
+    background-color: #64545f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .signup-button:hover {
+    background-color: #2980b9;
+  }
+
+
+</style>
+</head>
+<body style="background-image: url('{% static 'images/signup.jpg' %}');">
+<div class="signup-box">
+  <h2 style="color: azure;">Teacher Signup</h2>
+  <form action="{% url 'user_sign' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" class="signup-input" name="fname" placeholder="Firstname" required>
+    <input type="text" class="signup-input" name="lname" placeholder="Lastname" required>
+    <input type="text" class="signup-input" name="uname" placeholder="Username" required>
+    <input type="text" class="signup-input" name="add" placeholder="Address" required>
+    <input type="number" class="signup-input" name="age" placeholder="Age" required>
+    <input type="email" class="signup-input" name="mail" placeholder="Email Address" required>
+    <input type="number" class="signup-input" name="phone" placeholder="Phone Number" required>
+    <input type="password" class="signup-input" name="pass" placeholder="Password" required>
+    <input type="password" class="signup-input" name="cpass" placeholder="Confirm Password" required>
+    <input type="file" class="signup-input" name="img" placeholder="Upload Image" accept="image/" required>
+    
+    <select class="signup-input" name="c" style="height: 40px; width: 200px; border-radius: 5px; border-color: transparent;">
+      {% for c in crse %}
+      <option value="{{ c.id }}" selected>
+        {{c.coursename}}
+      </option>
+      {% endfor %}
+
+    </select>
+    
+    <button type="submit" class="signup-button">Sign Up</button>
+  </form>
+  {% for msg in messages %}
+      <h6>
+        <div class="alert alert-danger mt-3" >
+          {{ msg }}
+        </div>
+      </h6>
+      {% endfor %}
+  <p style="color: antiquewhite;">Already have an account? <a href="{% url 'homepage' %}">Log In</a></p>
+
+  
+</div>
+
+</body>
+</html>

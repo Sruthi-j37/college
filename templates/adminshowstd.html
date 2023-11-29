@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  {% load static %}
+
+    <style>
+        
+        body {
+            background-size: cover;
+            
+
+            
+            background-attachment: cover;
+        }
+        .container {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-color: transparent;
+            margin-top: 50px;
+            padding-top: 30px;
+            padding-bottom: 50px;
+            border-radius: 10px;
+        }
+        th{
+            background-color: #596165;
+            color: aliceblue;
+            border-radius: 5px;
+            border-color: transparent;
+        }
+        table {
+            width: 100%;
+            background-color: transparent;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    </head>
+
+<body>
+    <div class="container">
+    <h1 style="text-align: center; font-size: 50px; font-weight: 100;" >DETAILS OF STUDENT</h1>
+    <table border="1px solid black">
+        <tr style="text-align: center;">
+            <th>Id</th>
+            <th>Student Name</th> 
+            <th>Address</th>
+            <th>Age</th>
+            <th>JoiningDate</th>
+            <th>Coursename</th>
+            <th>CourseFee</th>
+            <th colspan="2">Edit/Delete</th>
+            
+        </tr>
+        {% for s in stud %}
+        <tr>
+            <td>{{s.id}}</td>
+            <td>{{s.studentname}}</td> 
+            <td>{{s.address}}</td>
+            <td>{{s.age}}</td>
+            <td>{{s.joiningdate}}</td>
+            <td>{{s.course.coursename}}</td>
+            <td>{{s.course.fees}}</td>
+            <td><button><a href="{% url 'admineditstd' s.id %}">Edit</a></button></td>
+            <td><button><a href="{% url 'delete_std' s.id %}">Delete</a></button></td>
+        </tr>
+        {% endfor %}
+       
+    </table>
+
+</div>
+    
+    
+</body>
+</html>
+
+
+   

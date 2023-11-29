@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  {% load static %}
+<style>
+    .body {
+      margin: 30 px;
+      padding: 0;
+      font-family: 'Times New Roman', Times, serif;
+      background: no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 25px;
+      margin-left: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      padding-bottom: 10px;
+    }
+  
+    .login-container h2 {
+      margin-bottom: 1px;
+      color: #333;
+    }
+  
+    .login-input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccccccf5;
+      border-radius: 5px;
+    }
+  
+    .login-button {
+      background-color: #5c4c58;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 20px;
+      cursor: pointer;
+    }
+  
+    .login-button:hover {
+      background-color: #4759ff;
+    }
+  
+  
+  </style>
+  </head>
+  <body>
+
+  <div class="body" style="background-image: url({% static 'images/crbg1.jpg' %});">
+    
+    <div class="login-container">
+      
+      <h2>Course</h2>
+      <form action="{% url 'add_course' %}" method="POST" >
+        {% csrf_token %}
+    
+        <input type="text" class="login-input" name='course' placeholder="Course" required>
+        <input type="number" class="login-input" name="fee" placeholder="Fees" required>
+        <button type="submit" class="login-button">Add</button>
+          
+      </form>
+      
+    </div>
+  </div>
+</body>
+</html>
+    

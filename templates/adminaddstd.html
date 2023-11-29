@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  {% load static %}
+
+<style>
+    .body {
+      margin: 3 px;
+      padding: 0;
+      font-family: 'Times New Roman', Times, serif;
+      background: no-repeat center center fixed ;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+    }
+  
+    .signup-box {
+      
+      background-color: rgba(255, 255, 255, 0.8);
+      width: 350px;
+      padding: 30px;
+      margin-left: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+  
+    .signup-box h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+  
+    .signup-input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  
+    .signup-button {
+      background-color: #64545f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  
+    .signup-button:hover {
+      background-color: #2980b9;
+    }
+
+    
+  
+
+  
+  </style>
+  </head>
+  <body>
+    
+  
+
+  <div class="body" style="background-image: url({% static 'images/crbg1.jpg' %});">
+  <div class="signup-box">
+    <h2>Signup</h2>
+    <form action="{% url 'addstd_details' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" class="signup-input" name="name" placeholder="Enter FullName" required>
+      <input type="text" class="signup-input" name="address" placeholder="Address" required>
+      <input type="number" class="signup-input" name="age" placeholder="Age" required>
+      <input type="date" class="signup-input" name="date" placeholder="Date" required>
+
+      <select class="drop" name="c" placeholder="course" style="height: 30px; width: 200px; border-radius: 5px; border-color: transparent;">
+        {% for c in crse %}
+        <option value="{{c.id}}">
+          {{c.coursename}}
+        </option>
+        {% endfor %}
+
+      </select>
+      <br>
+      <br>
+      <button type="submit" class="signup-button">Sign Up</button>
+    </form>
+    
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
